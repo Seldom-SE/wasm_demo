@@ -4,7 +4,11 @@ use wasm_bindgen::prelude::*;
 struct Person;
 struct Name(String);
 
-fn add_people(mut commands: Commands) {
+fn add_people(
+    mut commands: Commands,
+    asset_server: Res<AssetServer>,
+    mut materials: ResMut<Assets<ColorMaterial>>,
+) {
     commands
         .spawn()
         .insert(Person)
@@ -17,6 +21,13 @@ fn add_people(mut commands: Commands) {
         .spawn()
         .insert(Person)
         .insert(Name("Test Name".to_string()));
+
+    let texture = asset_server.load("textures/test.png");
+    commands.spawn_bundle(OrthographicCameraBundle::new_2d());
+    commands.spawn_bundle(SpriteBundle {
+        material: materials.add(texture.into()),
+        ..SpriteBundle::default()
+    });
 }
 
 fn greet_people(query: Query<&Name, With<Person>>) {
