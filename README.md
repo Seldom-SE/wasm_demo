@@ -11,7 +11,15 @@ Here's how to run the demo:
 7. Run `cargo update -p tracing-wasm --precise 0.2.0` to circumvent a current bug in the dependencies, caused by a semantic versioning breakage
 8. Run `wasm-pack build --target web --release` to build the project. Allow this command to completely finish.
 9. Move `wasm_demo_bg.wasm` and `wasm_demo.js` from pkg/ to the repo's root
-10. Run `python -m SimpleHTTPServer` to start the web server
+10. Run `python -m SimpleHTTPServer` or `python3 -m http.server` to start the web server
 11. Open `http://localhost:8000/` in your browser
 
 To rebuild the demo, follow the steps from 8 to 11.
+
+## Troubleshooting
+
+If you run into any issues, all of these technologies are in early stages, so finding support online will be difficult.
+
+If you attempt to build the demo natively, delete `target/` before doing so, and delete it again before rebuilding for web.
+
+Some IDEs will update JavaScript imports automatically when you move the files. Make sure that this does not happen.
