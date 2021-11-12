@@ -10,8 +10,8 @@ Here's how to run the demo:
 6. Run `cargo install wasm-pack` to install `wasm-pack`, a CLI tool for building WebAssembly packages
 7. Run `cargo update -p tracing-wasm --precise 0.2.0` to circumvent a current bug in the dependencies, caused by a semantic versioning breakage
 8. Run `wasm-pack build --target web --release` to build the project. Allow this command to completely finish.
-9. Move `wasm_demo_bg.wasm` and `wasm_demo.js` from pkg/ to the repo's root
-10. Run `python -m SimpleHTTPServer` or `python3 -m http.server` to start the web server
+9. Move `wasm_demo_bg.wasm` and `wasm_demo.js` from `pkg/` to the repo's root
+10. Run `python -m SimpleHTTPServer`, `python3 -m http.server`, or `python -m http.server` (whichever one works) to start the web server
 11. Open `http://localhost:8000/` in your browser
 
 To rebuild the demo, follow the steps from 8 to 11.
