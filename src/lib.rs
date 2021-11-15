@@ -63,6 +63,8 @@ struct Textures {
     x: Handle<Texture>,
     #[asset(path = "textures/o.png")]
     o: Handle<Texture>,
+    #[asset(path = "textures/unclicked.png")]
+    unclicked: Handle<Texture>,
 }
 
 fn init(
@@ -73,11 +75,65 @@ fn init(
     commands.spawn_bundle(OrthographicCameraBundle::new_2d());
 
     commands.spawn_bundle(SpriteBundle {
-        material: materials.add(textures.board.clone().into()),
+        material: materials.add(textures.x.clone().into()),
         ..SpriteBundle::default()
     });
 
     // TEMP for demonstration purposes
+    /*commands
+        .spawn()
+        .insert(Clickable {
+            half_extents: Vec2::splat(100.),
+        })
+        .insert(Transform::default())
+        .insert(Sprite::textures.x);*/
+    commands
+        .spawn_bundle(SpriteBundle {
+            material: materials.add(textures.x.clone().into()),
+            ..SpriteBundle::default()
+        });
+    commands
+        .spawn()
+        .insert(Clickable {
+            half_extents: Vec2::splat(100.),
+        })
+        .insert(Transform::default()); // Use Transform::from_xyz(float1, float2, float3)DEFINE POSITIONS FOR THESE CLICKABLES. HAVE ANOTHER COMPONENT ATTACHED TO CLICKABLES SO IT"S KNOWN WHAT'S CLICKED AND SYSTEMS CAN BE BYPASSED. LOOK FOR WHAT IMAGE ALREADY EXISTS ON COMPONENT. THIS IS THE EASIEST IMPLEMENTAION.
+    commands
+        .spawn()
+        .insert(Clickable {
+            half_extents: Vec2::splat(100.),
+        })
+        .insert(Transform::default());
+    commands
+        .spawn()
+        .insert(Clickable {
+            half_extents: Vec2::splat(100.),
+        })
+        .insert(Transform::default());
+    commands
+        .spawn()
+        .insert(Clickable {
+            half_extents: Vec2::splat(100.),
+        })
+        .insert(Transform::default());
+    commands
+        .spawn()
+        .insert(Clickable {
+            half_extents: Vec2::splat(100.),
+        })
+        .insert(Transform::default());
+    commands
+        .spawn()
+        .insert(Clickable {
+            half_extents: Vec2::splat(100.),
+        })
+        .insert(Transform::default());
+    commands
+        .spawn()
+        .insert(Clickable {
+            half_extents: Vec2::splat(100.),
+        })
+        .insert(Transform::default());
     commands
         .spawn()
         .insert(Clickable {
