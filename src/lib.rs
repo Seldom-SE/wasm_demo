@@ -381,19 +381,24 @@ fn ai_click(
     matCompare: Res<Materials>,
 ) {
     ai_events.iter().for_each(|ai_event| {
-        loop {
-            let x = rand::thread_rng().gen_range(0..3);
-            let y = rand::thread_rng().gen_range(0..3);
-            if *material.get_mut(clickable_entities.sections[y][x]).unwrap()
-                == matCompare.matUnclicked
-            {
-                *material.get_mut(clickable_entities.sections[y][x]).unwrap() =
-                    matCompare.matO.clone();
-                break;
+        if clickable_entities.sections.iter().any(|row| {
+            row.iter()
+                .any(|&entity| *material.get_mut(entity).unwrap() == matCompare.matUnclicked)
+        }) {
+            loop {
+                let x = rand::thread_rng().gen_range(0..3);
+                let y = rand::thread_rng().gen_range(0..3);
+                if *material.get_mut(clickable_entities.sections[y][x]).unwrap()
+                    == matCompare.matUnclicked
+                {
+                    *material.get_mut(clickable_entities.sections[y][x]).unwrap() =
+                        matCompare.matO.clone();
+                    break;
+                }
             }
-        }
 
-        check_ai_win_events.send(CheckAiWinEvent);
+            check_ai_win_events.send(CheckAiWinEvent);
+        }
     });
 }
 
